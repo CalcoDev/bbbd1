@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://scenes/managers/game_manager.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -26,8 +27,12 @@ window/size/viewport_width=320
 window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [input]
 
@@ -57,6 +62,10 @@ INTERACT={
 2d_physics/layer_1="Lever Geometry"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="One Way Platforms"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

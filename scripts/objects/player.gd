@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 @export_group("Refrences")
-@export var ground_check: ColliderComp
 
 @export_group("Movement")
 @export_subgroup("Walking")
