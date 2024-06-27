@@ -38,6 +38,7 @@ var unmodified_velocity: Vector2 = Vector2.ZERO
 var inp_horiz: float = 0.0
 var inp_jump_pressed: bool = false
 var inp_jump_released: bool = false
+var inp_down: bool = false
 
 # Timers
 var coyote_timer: float = 0.0
@@ -76,6 +77,11 @@ func _process(delta: float) -> void:
 	if inp_jump_pressed:
 		jump_buffer_timer = jump_buffer_time
 	
+	if inp_down and jump_buffer_timer > 0.0 and is_grounded:
+		global_position.y += 1
+		jump_buffer_timer = 0.0
+		coyote_timer = 0.0
+
 	if jump_buffer_timer > 0.0 and (is_grounded or coyote_timer > 0.0):
 		velocity.y = -jump_speed
 		coyote_timer = 0.0
@@ -140,3 +146,4 @@ func gather_input():
 	inp_horiz = Input.get_action_strength("RIGHT") - Input.get_action_strength("LEFT")
 	inp_jump_pressed = Input.is_action_just_pressed("JUMP")
 	inp_jump_released = Input.is_action_just_released("JUMP")
+	inp_down = Input.is_action_pressed("DOWN")

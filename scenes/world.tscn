@@ -28,7 +28,7 @@ transition = 0
 ease = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu8j2"]
-size = Vector2(9, 31)
+size = Vector2(9, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78608"]
 atlas = ExtResource("7_aruda")
@@ -263,13 +263,13 @@ max_fall_speed = 200.0
 jump_speed = 180.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0.5, -15.5)
+position = Vector2(0.5, -14.5)
 shape = SubResource("RectangleShape2D_nu8j2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(-15, -47)
+position = Vector2(-15, -48)
 sprite_frames = SubResource("SpriteFrames_f8y1m")
-animation = &"land"
+animation = &"idle"
 autoplay = "idle"
 centered = false
 
