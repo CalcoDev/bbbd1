@@ -26,19 +26,14 @@ func area_body_exited(body) -> void:
         return
     camera.priority = old_priority
 
-# func _notification(what: int) -> void:
-#     if what == NOTIFICATION_CHILD_ORDER_CHANGED:
-#         if is_valid():
-#             var camera = get_child(1) as PhantomCamera2D
-#             camera.limit_target = get_child(0).get_path()
-
 func _get_configuration_warnings() -> PackedStringArray:
     var warnings = []
     if not is_valid():
         warnings.append("[Area Camera]: Please a camera to this camera!")
         return warnings
     var ocamera = get_child(1) as PhantomCamera2D
-    ocamera.limit_target = get_child(0).get_path()
+    ocamera.limit_target = ocamera.get_path_to(get_child(0))
+    print(ocamera.limit_target)
     return warnings
 
 func is_valid() -> bool:
