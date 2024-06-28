@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://u33cussu7dp5"]
+
+[ext_resource type="Texture2D" uid="uid://bpdsrxgkrylav" path="res://assets/art/forest/vegetation/fern.png" id="1_hhydh"]
+
+[node name="Fern" type="Node2D"]
+
+[node name="Fern" type="Sprite2D" parent="."]
+position = Vector2(-4, -18)
+texture = ExtResource("1_hhydh")
+centered = false
