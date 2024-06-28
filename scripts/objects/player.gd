@@ -60,9 +60,6 @@ func _process(delta: float) -> void:
 	was_grounded = is_grounded
 	is_grounded = is_on_floor()
 
-	# need to store this for animation check
-	var was_jumping_this_frame = was_jumping
-
 	if was_grounded and not is_grounded:
 		coyote_timer = coyote_time
 	elif not was_grounded and is_grounded:
