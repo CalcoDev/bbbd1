@@ -1,18 +1,16 @@
-[gd_scene load_steps=40 format=4 uid="uid://qp4dquvktbkc"]
+[gd_scene load_steps=16 format=4 uid="uid://qp4dquvktbkc"]
 
 [ext_resource type="TileSet" uid="uid://dqfsmafbrmeqj" path="res://resources/tilesets/forest_tileset.tres" id="1_0yn7t"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_381rg"]
-[ext_resource type="Script" path="res://scripts/objects/player.gd" id="2_m516s"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_q3o6p"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_4iwpp"]
 [ext_resource type="Texture2D" uid="uid://cq7nn6q11chde" path="res://assets/art/forest/parallax_clouds.png" id="4_n64t0"]
 [ext_resource type="Texture2D" uid="uid://bcwvqd87iphh8" path="res://assets/art/forest/parallax_mountains.png" id="5_8gahj"]
-[ext_resource type="Texture2D" uid="uid://cxrgn4we3xthi" path="res://assets/art/player/player_jump.png" id="7_aruda"]
-[ext_resource type="Texture2D" uid="uid://beovgidfkl1xv" path="res://assets/art/player/player_idle.png" id="8_u25vl"]
+[ext_resource type="PackedScene" uid="uid://emfxd6irk43v" path="res://scenes/objects/player.tscn" id="5_ygjec"]
+[ext_resource type="Script" path="res://scripts/interactions/interaction_effect.gd" id="8_ey02q"]
 [ext_resource type="PackedScene" uid="uid://bm0qdr23hvxbo" path="res://scenes/forest/trees/oak_tree.tscn" id="9_46ujq"]
-[ext_resource type="Script" path="res://scripts/interactions/interactor_component.gd" id="9_ha7g3"]
-[ext_resource type="Texture2D" uid="uid://bwmw2l8rtxxw5" path="res://assets/art/player/player_walk.png" id="9_q6h0g"]
 [ext_resource type="Script" path="res://scripts/interactions/interaction_component.gd" id="11_427b1"]
+[ext_resource type="PackedScene" uid="uid://bg55seij7m8so" path="res://scenes/managers/dialogue_manager.tscn" id="12_a74bc"]
 [ext_resource type="Script" path="res://scripts/interactions/dialogue_effect.gd" id="12_c146o"]
 
 [sub_resource type="Resource" id="Resource_3n7nq"]
@@ -20,178 +18,6 @@ script = ExtResource("3_4iwpp")
 duration = 1.0
 transition = 0
 ease = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu8j2"]
-size = Vector2(9, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78608"]
-atlas = ExtResource("7_aruda")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6nmt"]
-atlas = ExtResource("8_u25vl")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xj877"]
-atlas = ExtResource("8_u25vl")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_24fm3"]
-atlas = ExtResource("7_aruda")
-region = Rect2(128, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dafaq"]
-atlas = ExtResource("7_aruda")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8m3sh"]
-atlas = ExtResource("7_aruda")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ppok"]
-atlas = ExtResource("7_aruda")
-region = Rect2(160, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o28hd"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lql5q"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7is6g"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_edqnj"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckeua"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(128, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yw0dc"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(160, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gt3bc"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(192, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n66uc"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(224, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0l3m"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(256, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03l3q"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(288, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l84bn"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(320, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqmb8"]
-atlas = ExtResource("9_q6h0g")
-region = Rect2(352, 0, 32, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_f8y1m"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_78608")
-}],
-"loop": true,
-"name": &"fall",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l6nmt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xj877")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_24fm3")
-}],
-"loop": false,
-"name": &"jump_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dafaq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8m3sh")
-}],
-"loop": false,
-"name": &"jump_up",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ppok")
-}],
-"loop": false,
-"name": &"land",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o28hd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lql5q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7is6g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_edqnj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ckeua")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yw0dc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gt3bc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n66uc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p0l3m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03l3q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l84bn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qqmb8")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 10.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oidnc"]
-radius = 33.0151
 
 [sub_resource type="Resource" id="Resource_02fa0"]
 script = ExtResource("12_c146o")
@@ -237,40 +63,7 @@ tween_on_load = false
 follow_offset = Vector2(0, -20)
 follow_damping = true
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("sprite", "_interactor")]
-position = Vector2(6, 125)
-collision_layer = 2
-collision_mask = 5
-script = ExtResource("2_m516s")
-sprite = NodePath("AnimatedSprite2D")
-_interactor = NodePath("InteractorComponent")
-move_speed = 100.0
-move_accel = 900.0
-move_turn = 1400.0
-move_decel = 700.0
-gravity = 400.0
-max_fall_speed = 200.0
-jump_speed = 180.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0.5, -14.5)
-shape = SubResource("RectangleShape2D_nu8j2")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(-15, -48)
-sprite_frames = SubResource("SpriteFrames_f8y1m")
-animation = &"idle"
-autoplay = "idle"
-centered = false
-
-[node name="InteractorComponent" type="Area2D" parent="Player"]
-collision_layer = 8
-collision_mask = 16
-script = ExtResource("9_ha7g3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/InteractorComponent"]
-position = Vector2(0, -16)
-shape = SubResource("CircleShape2D_oidnc")
+[node name="Player" parent="." instance=ExtResource("5_ygjec")]
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -282,7 +75,7 @@ position = Vector2(-3, -27)
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("11_427b1")
-effects = [SubResource("Resource_02fa0")]
+effects = Array[ExtResource("8_ey02q")]([SubResource("Resource_02fa0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/OakTreeFull/InteractionComponent"]
 shape = SubResource("CircleShape2D_scsl0")
@@ -318,3 +111,7 @@ motion_scale = Vector2(0.8, 0.8)
 z_index = -2
 tile_map_data = PackedByteArray("AAAAAAYAAAAFAAAAAAABAAYAAAAFAAAAAAACAAYAAAAFAAAAAAADAAYAAAAGAAAAAAACAAcAAAAFAAEAAAABAAcAAAAFAAEAAAAAAAcAAAAFAAEAAAADAAcAAAAFAAEAAAAEAAcAAAAFAAAAAAAFAAcAAAAFAAAAAAAGAAcAAAAFAAAAAAADAAgAAAAFAAIAAAACAAgAAAAFAAIAAAABAAgAAAAFAAEAAAAAAAgAAAAFAAEAAAAEAAgAAAAFAAIAAAAFAAgAAAAFAAIAAAAGAAgAAAAFAAIAAAAHAAgAAAAFAAIAAAAHAAcAAAAFAAAAAAAIAAgAAAAFAAIAAAAJAAgAAAAFAAIAAAAJAAcAAAAFAAAAAAAIAAcAAAAFAAAAAAAKAAcAAAAFAAEAAAALAAcAAAAFAAEAAAALAAgAAAAGAAEAAAAKAAgAAAAFAAEAAAALAAkAAAAGAAEAAAALAAoAAAAFAAEAAAALAAsAAAAFAAEAAAALAAwAAAAFAAEAAAALAA0AAAAFAAEAAAAKAAoAAAAEAAEAAAAKAAkAAAAEAAEAAAAKAAsAAAAEAAEAAAAKAAwAAAAEAAEAAAAKAA0AAAAFAAEAAAAMAAsAAAAFAAEAAAAMAAwAAAAFAAEAAAAMAA0AAAAFAAEAAAAMAAoAAAAFAAAAAAANAAsAAAAFAAEAAAANAAwAAAAFAAEAAAANAA0AAAAFAAEAAAANAAoAAAAFAAAAAAAOAAwAAAAGAAEAAAAOAA0AAAAFAAEAAAAOAAsAAAAGAAEAAAAOAAoAAAAGAAAAAAAMAA4AAAAFAAEAAAALAA4AAAAFAAEAAAAKAA4AAAAFAAEAAAANAA4AAAAFAAEAAAAOAA4AAAAFAAEAAAAJAA4AAAAEAAEAAAAJAA0AAAAEAAEAAAAPAA0AAAAFAAAAAAAQAA0AAAAGAAIAAAAPAA4AAAAGAAEAAAAJAA8AAAAFAAEAAAAKAA8AAAAFAAEAAAALAA8AAAAFAAEAAAAMAA8AAAAFAAEAAAANAA8AAAAFAAEAAAAOAA8AAAAFAAEAAAAPAA8AAAAFAAEAAAAQAA8AAAAFAAAAAAAIAA8AAAAFAAAAAAAMAAcAAAAFAAIAAAANAAcAAAAGAAIAAAANAAYAAAAEAAIAAAAOAAYAAAAFAAIAAAAPAAYAAAAFAAIAAAAQAAYAAAAGAAIAAAAQAAUAAAAGAAAAAAAPAAUAAAAFAAAAAAAOAAUAAAAFAAAAAAANAAUAAAAEAAAAAAARAAYAAAAEAAEAAAASAAYAAAAGAAEAAAARAAcAAAAEAAEAAAASAAcAAAAFAAEAAAATAAcAAAAFAAEAAAAUAAcAAAAFAAEAAAAVAAcAAAAFAAEAAAAVAAYAAAAEAAAAAAAWAAYAAAAFAAEAAAAXAAYAAAAFAAEAAAAWAAUAAAAEAAAAAAAXAAUAAAAFAAEAAAAYAAUAAAAFAAEAAAAYAAQAAAAEAAAAAAAZAAQAAAAGAAAAAAAYAAYAAAAFAAEAAAAZAAUAAAAFAAEAAAAZAAYAAAAFAAEAAAAaAAUAAAAFAAEAAAAbAAUAAAAFAAEAAAAaAAYAAAAFAAEAAAAbAAYAAAAFAAEAAAAcAAUAAAAFAAEAAAAdAAUAAAAFAAEAAAAeAAUAAAAFAAEAAAAfAAUAAAAFAAAAAAAgAAUAAAAGAAAAAAAfAAYAAAAFAAEAAAAeAAYAAAAFAAEAAAAdAAYAAAAFAAEAAAAcAAYAAAAFAAEAAAAWAAcAAAAFAAEAAAAXAAcAAAAFAAEAAAAYAAcAAAAFAAEAAAAZAAcAAAAFAAEAAAAaAAcAAAAFAAEAAAAbAAcAAAAFAAEAAAAWAAgAAAAFAAIAAAAVAAgAAAAFAAIAAAAUAAgAAAAFAAIAAAATAAgAAAAFAAIAAAASAAgAAAAFAAIAAAARAAgAAAAFAAIAAAAXAAgAAAAFAAIAAAAYAAgAAAAFAAIAAAAZAAgAAAAFAAIAAAAaAAgAAAAFAAIAAAAQAAgAAAAEAAIAAAAeAAcAAAAFAAEAAAAfAAcAAAAFAAEAAAAgAAcAAAAFAAEAAAAgAAYAAAAFAAEAAAAhAAcAAAAFAAEAAAAiAAcAAAAFAAAAAAAjAAcAAAAFAAEAAAAkAAcAAAAFAAEAAAAlAAcAAAAFAAEAAAAjAAYAAAAEAAAAAAAkAAYAAAAFAAAAAAAlAAYAAAAFAAAAAAAmAAcAAAAFAAEAAAAmAAYAAAAFAAEAAAAmAAUAAAAGAAAAAAAmAAgAAAAFAAEAAAAnAAcAAAAGAAEAAAAnAAYAAAAGAAAAAAAnAAgAAAAGAAEAAAAlAAgAAAAFAAIAAAAkAAgAAAAFAAIAAAAjAAgAAAAFAAIAAAAiAAgAAAAFAAIAAAAhAAgAAAAFAAIAAAAgAAgAAAAFAAIAAAAfAAgAAAAFAAIAAAAeAAgAAAAFAAIAAAAdAAgAAAAFAAIAAAAcAAgAAAAFAAIAAAAhAAYAAAAFAAAAAAAdAAcAAAAFAAEAAAAcAAcAAAAFAAEAAAAbAAgAAAAFAAIAAAAmAAkAAAAEAAEAAAAmAAoAAAAEAAEAAAAnAAkAAAAGAAEAAAAnAAoAAAAGAAEAAAAnAAsAAAAGAAEAAAAnAAwAAAAGAAEAAAAmAAsAAAAEAAEAAAAmAAwAAAAEAAEAAAAmAA0AAAAFAAEAAAAmAA4AAAAFAAEAAAAmAA8AAAAFAAEAAAAnAA8AAAAGAAEAAAAnAA4AAAAGAAEAAAAnAA0AAAAGAAEAAAAlAA8AAAAFAAEAAAAlAA4AAAAFAAEAAAAkAA4AAAAFAAEAAAAkAA0AAAAEAAAAAAAlAA0AAAAFAAEAAAAmABAAAAAFAAIAAAAlABAAAAAFAAIAAAAnABAAAAAGAAIAAAAkABAAAAAFAAIAAAAkAA8AAAAFAAEAAAAjAA8AAAAFAAEAAAAjAA4AAAAEAAEAAAAjABAAAAAFAAIAAAAiABAAAAAFAAIAAAAiAA8AAAAFAAEAAAAhAA8AAAAFAAAAAAAhABAAAAAFAAIAAAAgABAAAAAFAAIAAAAfABAAAAAFAAIAAAAeABAAAAAFAAIAAAAdABAAAAAFAAIAAAAdAA8AAAAFAAAAAAAeAA8AAAAFAAAAAAAfAA8AAAAFAAAAAAAgAA8AAAAFAAAAAAAcAA8AAAAFAAAAAAAbAA8AAAAFAAAAAAAaAA8AAAAFAAAAAAAZAA8AAAAFAAAAAAAYAA8AAAAFAAAAAAAcABAAAAAFAAIAAAAbABAAAAAFAAIAAAAaABAAAAAFAAIAAAAZABAAAAAFAAIAAAAYABAAAAAFAAIAAAAXABAAAAAFAAIAAAAWABAAAAAFAAIAAAAVABAAAAAFAAIAAAAUABAAAAAFAAIAAAATABAAAAAFAAIAAAASABAAAAAFAAIAAAARABAAAAAFAAIAAAAQABAAAAAFAAIAAAAPABAAAAAFAAIAAAAOABAAAAAFAAIAAAANABAAAAAFAAIAAAAMABAAAAAFAAIAAAALABAAAAAFAAIAAAAKABAAAAAFAAIAAAAJABAAAAAFAAIAAAAIABAAAAAFAAIAAAAHABAAAAAFAAIAAAAGABAAAAAFAAIAAAAFABAAAAAFAAIAAAAEABAAAAAFAAIAAAADABAAAAAFAAIAAAACABAAAAAFAAIAAAABABAAAAAFAAIAAAAAABAAAAAFAAIAAAD//xAAAAAEAAIAAAD//w8AAAAEAAEAAAD//w4AAAAEAAEAAAD//w0AAAAEAAEAAAD//wwAAAAEAAEAAAD//wsAAAAEAAEAAAD//woAAAAEAAEAAAD//wkAAAAEAAEAAAD//wgAAAAEAAEAAAD//wcAAAAEAAEAAAD//wYAAAAEAAAAAAAAAAoAAAAFAAEAAAAAAAkAAAAFAAEAAAABAAkAAAAGAAEAAAABAAoAAAAFAAEAAAABAAsAAAAFAAEAAAABAAwAAAAGAAEAAAABAA0AAAAFAAEAAAABAA4AAAAFAAEAAAAAAA4AAAAFAAEAAAAAAA0AAAAFAAEAAAAAAAwAAAAFAAEAAAAAAAsAAAAFAAEAAAAAAA8AAAAFAAEAAAACAAsAAAAFAAIAAAACAAoAAAAFAAEAAAADAAoAAAAGAAAAAAADAAsAAAAGAAIAAAADAAwAAAAGAAIAAAADAA0AAAAGAAEAAAADAA4AAAAFAAEAAAACAA4AAAAFAAAAAAACAA8AAAAFAAEAAAABAA8AAAAFAAEAAAAGAA8AAAAFAAEAAAAFAA8AAAAFAAEAAAAEAA8AAAAFAAEAAAADAA8AAAAFAAEAAAAEAA4AAAAFAAAAAAAFAA4AAAAFAAAAAAAGAA4AAAAGAAAAAAAHAA8AAAAFAAEAAAARAA8AAAAFAAAAAAASAA8AAAAFAAAAAAATAA8AAAAFAAAAAAAUAA8AAAAFAAAAAAAVAA8AAAAFAAAAAAAWAA8AAAAFAAAAAAAXAA8AAAAFAAAAAAA=")
 tile_set = ExtResource("1_0yn7t")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DialogueManager" parent="UI" instance=ExtResource("12_a74bc")]

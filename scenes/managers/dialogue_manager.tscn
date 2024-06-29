@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg55seij7m8so"]
+
+[ext_resource type="Script" path="res://scripts/managers/dialogue_manager.gd" id="1_jyuw8"]
+[ext_resource type="Texture2D" uid="uid://jxlh2eiacav" path="res://assets/art/dialogue/dialogue_nine_slice.png" id="2_0rm8p"]
+[ext_resource type="Texture2D" uid="uid://drj8meb57n12v" path="res://assets/art/dialogue/dialogue_tree_background.png" id="3_dd2km"]
+[ext_resource type="FontFile" uid="uid://7veepj8v2fp4" path="res://resources/fonts/Fool.ttf" id="4_yx64l"]
+[ext_resource type="Texture2D" uid="uid://3ajjjve2j475" path="res://assets/art/dialogue/dialogue_mid_deco.png" id="5_qe36k"]
+
+[node name="DialogueManager" type="Control" node_paths=PackedStringArray("text_display", "dialogue_box")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jyuw8")
+text_display = NodePath("DialogueDispaly/TextContainer/RichTextLabel")
+dialogue_box = NodePath("DialogueDispaly")
+
+[node name="DialogueDispaly" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -89.0
+offset_right = 148.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_0rm8p")
+patch_margin_left = 24
+patch_margin_top = 22
+patch_margin_right = 24
+patch_margin_bottom = 23
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="BackgroundContainer" type="MarginContainer" parent="DialogueDispaly"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="Container" type="Control" parent="DialogueDispaly/BackgroundContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="Tree" type="TextureRect" parent="DialogueDispaly/BackgroundContainer/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dd2km")
+stretch_mode = 3
+
+[node name="TextContainer" type="MarginContainer" parent="DialogueDispaly"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueDispaly/TextContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_yx64l")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Hello guys this if [color=#eb9834]fireball[/color] man.
+asdijadioajdiaj"
+scroll_active = false
+
+[node name="MidDecoUp" type="TextureRect" parent="DialogueDispaly"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -13.0
+offset_top = -2.0
+offset_right = 13.0
+offset_bottom = 7.0
+grow_horizontal = 2
+texture = ExtResource("5_qe36k")
+
+[node name="MidDecoDown" type="TextureRect" parent="DialogueDispaly"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -8.0
+offset_right = 13.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_qe36k")
+flip_v = true

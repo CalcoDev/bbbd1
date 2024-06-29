@@ -5,4 +5,4 @@ extends InteractionEffect
 
 func on_use() -> void:
     super()
-    print("... said ", text)
+    DialogueManager.instance.play_text(text)
