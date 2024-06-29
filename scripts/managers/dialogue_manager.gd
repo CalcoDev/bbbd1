@@ -1,5 +1,5 @@
 class_name DialogueManager
-extends Node
+extends Control
 
 static var instance: DialogueManager = null
 
@@ -14,19 +14,18 @@ static var instance: DialogueManager = null
 			return
 		is_hidden = value
 		if value:
-			hide()
+			hide_box()
 		else:
-			display()
+			display_box()
 
-func display() -> void:
+func display_box() -> void:
 	if not is_hidden:
 		return
 	is_hidden = false
-	# dialogue_box.visible = true
 	anim.play("dialogue_enter")
 	await anim.animation_finished
 
-func hide() -> void:
+func hide_box() -> void:
 	if is_hidden:
 		return
 	is_hidden = true
@@ -35,11 +34,11 @@ func hide() -> void:
 	await anim.animation_finished
 
 func play_text(text: String) -> void:
-	display()
+	display_box()
 	var coro = Coro.new(play_text_coroutine, true)
 	await coro.run({"text": text, "cps": 10})
 	await await_player_input("DIALOGUE_NEXT")
-	hide()
+	hide_box()
 
 func await_player_input(action):
 	while true:
@@ -68,4 +67,5 @@ func _enter_tree() -> void:
 		queue_free()
 		return
 	instance = self
-	hide()
+	visible = true
+	hide_box()

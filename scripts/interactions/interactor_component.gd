@@ -7,7 +7,7 @@ static var INTERACTION_LAYER = 16
 func try_to_interact() -> bool:
 	if _body_action == null:
 		return false
-	_body_action.interact()
+	_body_action.interact(self)
 	return true
 
 # var _point_action: InteractionComponent = null
@@ -38,7 +38,10 @@ func _on_area_entered(area) -> void:
 	var dist = area.global_position.distance_to(global_position)
 	if _min_dist < 0 or dist < _min_dist:
 		_min_dist = 0
+		if _body_action != null:
+			_body_action.hide_interaction()
 		_body_action = area as InteractionComponent
+		_body_action.display_interaction()
 
 func _on_area_exited(area) -> void:
 	if not area is InteractionComponent:
@@ -46,4 +49,5 @@ func _on_area_exited(area) -> void:
 	_bodies.erase(area)
 	if _bodies.size() == 0:
 		_min_dist = -1
+		_body_action.hide_interaction()
 		_body_action = null

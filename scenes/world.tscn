@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://qp4dquvktbkc"]
+[gd_scene load_steps=17 format=4 uid="uid://qp4dquvktbkc"]
 
 [ext_resource type="TileSet" uid="uid://dqfsmafbrmeqj" path="res://resources/tilesets/forest_tileset.tres" id="1_0yn7t"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_381rg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://emfxd6irk43v" path="res://scenes/objects/player.tscn" id="5_ygjec"]
 [ext_resource type="Script" path="res://scripts/interactions/interaction_effect.gd" id="8_ey02q"]
 [ext_resource type="PackedScene" uid="uid://bm0qdr23hvxbo" path="res://scenes/forest/trees/oak_tree.tscn" id="9_46ujq"]
+[ext_resource type="Texture2D" uid="uid://c7km30d1epb0j" path="res://assets/art/interactions/interaction_point.png" id="10_6fb4x"]
 [ext_resource type="Script" path="res://scripts/interactions/interaction_component.gd" id="11_427b1"]
 [ext_resource type="PackedScene" uid="uid://bg55seij7m8so" path="res://scenes/managers/dialogue_manager.tscn" id="12_a74bc"]
 [ext_resource type="Script" path="res://scripts/interactions/dialogue_effect.gd" id="12_c146o"]
@@ -70,15 +71,22 @@ follow_damping = true
 [node name="OakTreeFull" parent="Objects" instance=ExtResource("9_46ujq")]
 position = Vector2(90, 128)
 
-[node name="InteractionComponent" type="Area2D" parent="Objects/OakTreeFull"]
-position = Vector2(-3, -27)
-collision_layer = 16
+[node name="InteractionComponent" type="Area2D" parent="Objects/OakTreeFull" node_paths=PackedStringArray("display_point")]
+top_level = true
+position = Vector2(87, 101)
+collision_layer = 0
 collision_mask = 8
 script = ExtResource("11_427b1")
+display_type = 2
+display_point = NodePath("DisplayPoint")
 effects = Array[ExtResource("8_ey02q")]([SubResource("Resource_02fa0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/OakTreeFull/InteractionComponent"]
 shape = SubResource("CircleShape2D_scsl0")
+
+[node name="DisplayPoint" type="Sprite2D" parent="Objects/OakTreeFull/InteractionComponent"]
+position = Vector2(-2, 0)
+texture = ExtResource("10_6fb4x")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -115,3 +123,4 @@ tile_set = ExtResource("1_0yn7t")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DialogueManager" parent="UI" instance=ExtResource("12_a74bc")]
+visible = false
