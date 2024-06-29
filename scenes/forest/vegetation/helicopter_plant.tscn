@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0c2d8ss0ooyb"]
+
+[ext_resource type="Texture2D" uid="uid://dd5wqjtg8r8qa" path="res://assets/art/forest/vegetation/helicopter_plant.png" id="1_tww6e"]
+
+[node name="HelicopterPlant" type="Sprite2D"]
+position = Vector2(-3, -8)
+texture = ExtResource("1_tww6e")
+centered = false

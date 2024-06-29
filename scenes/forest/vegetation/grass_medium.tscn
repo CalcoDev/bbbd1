@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgjdyimpn50jm"]
+
+[ext_resource type="Texture2D" uid="uid://bsrfqag11whnj" path="res://assets/art/forest/vegetation/grass_medium.png" id="1_5nqpw"]
+
+[node name="GrassMedium" type="Sprite2D"]
+position = Vector2(-2, -8)
+texture = ExtResource("1_5nqpw")
+centered = false

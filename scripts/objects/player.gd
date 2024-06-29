@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export_group("Refrences")
 @export var sprite: AnimatedSprite2D = null
+@export var _interactor: InteractorComponent = null
 
 @export_group("Movement")
 @export_subgroup("Walking")
@@ -39,6 +40,7 @@ var inp_horiz: float = 0.0
 var inp_jump_pressed: bool = false
 var inp_jump_released: bool = false
 var inp_down: bool = false
+var inp_interact: bool = false
 
 # Timers
 var coyote_timer: float = 0.0
@@ -109,6 +111,10 @@ func _process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, move_decel * delta)
 
+	# Interactions
+	if inp_interact:
+		_interactor.try_to_interact()
+
 	# Animations
 	if inp_horiz < 0 and not sprite.flip_h:
 		sprite.flip_h = true
@@ -144,3 +150,4 @@ func gather_input():
 	inp_jump_pressed = Input.is_action_just_pressed("JUMP")
 	inp_jump_released = Input.is_action_just_released("JUMP")
 	inp_down = Input.is_action_pressed("DOWN")
+	inp_interact = Input.is_action_just_pressed("INTERACT")

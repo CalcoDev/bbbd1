@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyjecpaci4xrt"]
+
+[ext_resource type="Texture2D" uid="uid://dllp7ly10kn2d" path="res://assets/art/forest/vegetation/shrub.png" id="1_g8tao"]
+
+[node name="Shrub" type="Sprite2D"]
+position = Vector2(-7, -6)
+texture = ExtResource("1_g8tao")
+centered = false

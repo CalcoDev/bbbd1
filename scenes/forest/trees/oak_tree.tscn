@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm0qdr23hvxbo"]
+
+[ext_resource type="Texture2D" uid="uid://mppohvlt23td" path="res://assets/art/forest/trees/oak_tree_full.png" id="1_nq2mq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="OakTreeFull" type="Sprite2D" parent="."]
+position = Vector2(-54, -128)
+texture = ExtResource("1_nq2mq")
+centered = false
