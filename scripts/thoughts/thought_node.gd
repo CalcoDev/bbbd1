@@ -16,6 +16,8 @@ var is_arrow: bool = false
 
 var should_reset_anim: bool = false
 
+var is_open: bool = false
+
 func _ready() -> void:
 	area.on_mouse_enter.connect(on_mouse_enter)
 	area.on_mouse_exit.connect(on_mouse_exit)
@@ -24,6 +26,7 @@ func _ready() -> void:
 
 	anim.play("info_exit")
 	should_reset_anim = false
+	is_open = false
 
 func _process(_delta: float) -> void:
 	if is_moving:
@@ -44,15 +47,22 @@ func _draw() -> void:
 		draw_line(start, end, Color.WHITE, 2, false)
 
 func on_mouse_enter() -> void:
+	if is_open:
+		return
+	
 	center.modulate = Color.RED
 	anim.play("info_enter")
 	should_reset_anim = true
+	is_open = true
+	ThoughtWorldCls.instance.hovered_node = self
 
 func on_mouse_exit() -> void:
-	center.modulate = Color.WHITE
-	if not is_arrow and not is_moving:
+	if not is_arrow and not is_moving and not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+		center.modulate = Color.WHITE
 		anim.play("info_exit")
 		should_reset_anim = false
+		is_open = false
+		ThoughtWorldCls.instance.hovered_node = null
 
 func on_mouse_down(event: InputEventMouseButton) -> void:
 	if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -82,6 +92,6 @@ func start_arrow():
 func stop_arrow():
 	is_arrow = false
 	queue_redraw()
-	if should_reset_anim:
-		anim.play("info_exit")
-		should_reset_anim = false
+	# if should_reset_anim:
+	# 	anim.play("info_exit")
+	# 	should_reset_anim = false

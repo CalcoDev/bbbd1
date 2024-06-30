@@ -1,5 +1,5 @@
 class_name ThoughtCamera
-extends Camera2D
+extends Node2D
 
 @export var canvas: CanvasLayer = null
 

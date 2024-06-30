@@ -4,6 +4,24 @@ signal on_pre_process()
 
 @export var current_player: Player = null
 
+@export var paused: bool = false:
+    set(value):
+        paused = value
+        if value:
+            get_tree().paused = true
+        else:
+            get_tree().paused = false
+        
+@export var scene_paused: bool = false:
+    set(value):
+        scene_paused = value
+        if value:
+            active_gameplay_scene.pause()
+        else:
+            active_gameplay_scene.resume()
+
+@export var active_gameplay_scene: GameplaySceneComponent = null
+
 func _enter_tree() -> void:
     process_priority = -999
 

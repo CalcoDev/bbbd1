@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 	# Thought world
 	if Input.is_action_just_pressed("THOUGHT_WORLD"):
 		ThoughtWorldCls.instance.toggle_visibily()
+		Game.paused = true
 
 	# Gravity
 	coyote_timer = max(0.0, coyote_timer - delta)

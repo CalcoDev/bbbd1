@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Game="*res://scenes/managers/game_manager.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+ThoughtWorld="res://scenes/thoughts/thought_world.tscn"
 
 [display]
 
