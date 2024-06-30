@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://leub1a0eki7q"]
+
+[ext_resource type="Script" path="res://scripts/thoughts/thought_world.gd" id="1_05wmn"]
+[ext_resource type="Script" path="res://scripts/thoughts/thought_camera.gd" id="2_368lr"]
+[ext_resource type="PackedScene" uid="uid://bxqnpmfpbv5mw" path="res://scenes/thoughts/thought_node.tscn" id="3_n3d3r"]
+
+[node name="ThoughtWorld" type="CanvasLayer"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("canvas")]
+script = ExtResource("2_368lr")
+canvas = NodePath("..")
+
+[node name="ThoughtWorld" type="Node2D" parent="."]
+script = ExtResource("1_05wmn")
+
+[node name="ThoughtNode" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+
+[node name="ThoughtNode2" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+position = Vector2(130, 60)
+halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+
+[node name="ThoughtNode3" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+position = Vector2(-127, 69)
+halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+
+[node name="ThoughtNode4" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+position = Vector2(-130, -60)
+halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+
+[node name="ThoughtNode5" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+position = Vector2(129, -70)
+halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]

@@ -1,7 +1,9 @@
-class_name ThoughtWorld
+class_name ThoughtWorldCls
 extends Node2D
 
-static var instance: ThoughtWorld = null
+@export var canvas: CanvasLayer = null
+
+static var instance: ThoughtWorldCls = null
 
 var is_arrow: bool = false
 var arrow_from: ThoughtNode = null
@@ -13,8 +15,11 @@ func _enter_tree() -> void:
 		push_warning("WARNING: Thought World instance already exists and is still valid!")
 	instance = self
 
+	if get_tree().root != get_parent().get_parent():
+		toggle_visibily()
+
 func _process(_delta: float) -> void:
-	var remove_held = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	var remove_held = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and arrow_from == null
 	var should_queue_redraw = false
 	for idx in range(len(connections) - 1, -1, -1):
 		var connection = connections[idx]
@@ -80,4 +85,8 @@ func handle_stop_arrow(node: ThoughtNode) -> void:
 		if connection[0] == arrow_from and connection[1] == node:
 			return
 	connections.append([arrow_from, node, false])
+	arrow_from = null
 	queue_redraw()
+
+func toggle_visibily():
+	canvas.visible = !canvas.visible

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://qp4dquvktbkc"]
+[gd_scene load_steps=18 format=4 uid="uid://qp4dquvktbkc"]
 
 [ext_resource type="TileSet" uid="uid://dqfsmafbrmeqj" path="res://resources/tilesets/forest_tileset.tres" id="1_0yn7t"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_381rg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/interactions/interaction_component.gd" id="11_427b1"]
 [ext_resource type="PackedScene" uid="uid://bg55seij7m8so" path="res://scenes/managers/dialogue_manager.tscn" id="12_a74bc"]
 [ext_resource type="Script" path="res://scripts/interactions/dialogue_effect.gd" id="12_c146o"]
+[ext_resource type="PackedScene" uid="uid://leub1a0eki7q" path="res://scenes/thoughts/thought_world.tscn" id="14_fncyg"]
 
 [sub_resource type="Resource" id="Resource_3n7nq"]
 script = ExtResource("3_4iwpp")
@@ -124,3 +125,5 @@ tile_set = ExtResource("1_0yn7t")
 
 [node name="DialogueManager" parent="UI" instance=ExtResource("12_a74bc")]
 visible = false
+
+[node name="ThoughtWorld" parent="UI" instance=ExtResource("14_fncyg")]

@@ -1,40 +1,130 @@
-[gd_scene load_steps=40 format=3 uid="uid://leub1a0eki7q"]
+[gd_scene load_steps=42 format=3 uid="uid://bxqnpmfpbv5mw"]
 
-[ext_resource type="Script" path="res://scripts/thoughts/thought_world.gd" id="1_05wmn"]
-[ext_resource type="Texture2D" uid="uid://qfklw2tulhtp" path="res://assets/art/thought/node_animation.png" id="1_0616q"]
-[ext_resource type="Script" path="res://scripts/thoughts/thought_node.gd" id="1_r08oa"]
-[ext_resource type="Texture2D" uid="uid://bh048lgj4gm6y" path="res://assets/art/thought/sample_thought_preview.png" id="1_wh56a"]
-[ext_resource type="Script" path="res://scripts/thoughts/thought_camera.gd" id="2_368lr"]
-[ext_resource type="Script" path="res://scripts/components/selectable_component.gd" id="2_fwu1d"]
-[ext_resource type="FontFile" uid="uid://7veepj8v2fp4" path="res://resources/fonts/Fool.ttf" id="2_voq7o"]
-[ext_resource type="Texture2D" uid="uid://cf5semhpwep8t" path="res://assets/art/thought/node_halo_1.png" id="3_g85ox"]
-[ext_resource type="Texture2D" uid="uid://rvdnu04hw6kq" path="res://assets/art/thought/node_halo_2.png" id="4_ippqo"]
-[ext_resource type="Texture2D" uid="uid://cyd2pevmcht1d" path="res://assets/art/thought/node_halo_3.png" id="5_t1idp"]
+[ext_resource type="Script" path="res://scripts/thoughts/thought_node.gd" id="1_sx0cq"]
+[ext_resource type="Script" path="res://scripts/components/selectable_component.gd" id="2_imcy3"]
+[ext_resource type="Texture2D" uid="uid://bh048lgj4gm6y" path="res://assets/art/thought/sample_thought_preview.png" id="3_6vinc"]
+[ext_resource type="Texture2D" uid="uid://qfklw2tulhtp" path="res://assets/art/thought/node_animation.png" id="4_xgrpt"]
+[ext_resource type="Texture2D" uid="uid://cf5semhpwep8t" path="res://assets/art/thought/node_halo_1.png" id="5_jnvh8"]
+[ext_resource type="Texture2D" uid="uid://rvdnu04hw6kq" path="res://assets/art/thought/node_halo_2.png" id="6_vcm01"]
+[ext_resource type="Texture2D" uid="uid://cyd2pevmcht1d" path="res://assets/art/thought/node_halo_3.png" id="7_rwfci"]
+[ext_resource type="FontFile" uid="uid://7veepj8v2fp4" path="res://resources/fonts/Fool.ttf" id="8_t4j36"]
+
+[sub_resource type="Animation" id="Animation_3rh4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6o85f"]
+resource_name = "info_exit"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_me8n3"]
+resource_name = "info_enter"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhvph"]
+_data = {
+"RESET": SubResource("Animation_3rh4t"),
+"info_enter": SubResource("Animation_me8n3"),
+"info_exit": SubResource("Animation_6o85f")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fb1n0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qj1q1"]
-atlas = ExtResource("1_0616q")
+atlas = ExtResource("4_xgrpt")
 region = Rect2(0, 0, 6, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw223"]
-atlas = ExtResource("1_0616q")
+atlas = ExtResource("4_xgrpt")
 region = Rect2(6, 0, 6, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qafaa"]
-atlas = ExtResource("1_0616q")
+atlas = ExtResource("4_xgrpt")
 region = Rect2(12, 0, 6, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vo68"]
-atlas = ExtResource("1_0616q")
+atlas = ExtResource("4_xgrpt")
 region = Rect2(18, 0, 6, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8g6jx"]
-atlas = ExtResource("1_0616q")
+atlas = ExtResource("4_xgrpt")
 region = Rect2(24, 0, 6, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4ma7"]
-atlas = ExtResource("1_0616q")
+atlas = ExtResource("4_xgrpt")
 region = Rect2(30, 0, 6, 9)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_boaof"]
@@ -64,27 +154,27 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1h4n"]
-atlas = ExtResource("3_g85ox")
+atlas = ExtResource("5_jnvh8")
 region = Rect2(0, 0, 64, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u4gil"]
-atlas = ExtResource("3_g85ox")
+atlas = ExtResource("5_jnvh8")
 region = Rect2(64, 0, 64, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hnfvx"]
-atlas = ExtResource("3_g85ox")
+atlas = ExtResource("5_jnvh8")
 region = Rect2(128, 0, 64, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gf1eo"]
-atlas = ExtResource("3_g85ox")
+atlas = ExtResource("5_jnvh8")
 region = Rect2(192, 0, 64, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3rwp"]
-atlas = ExtResource("3_g85ox")
+atlas = ExtResource("5_jnvh8")
 region = Rect2(256, 0, 64, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w64p7"]
-atlas = ExtResource("3_g85ox")
+atlas = ExtResource("5_jnvh8")
 region = Rect2(320, 0, 64, 63)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qphnp"]
@@ -114,27 +204,27 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbeh8"]
-atlas = ExtResource("4_ippqo")
+atlas = ExtResource("6_vcm01")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_502tj"]
-atlas = ExtResource("4_ippqo")
+atlas = ExtResource("6_vcm01")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xmwg2"]
-atlas = ExtResource("4_ippqo")
+atlas = ExtResource("6_vcm01")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rekv"]
-atlas = ExtResource("4_ippqo")
+atlas = ExtResource("6_vcm01")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03jat"]
-atlas = ExtResource("4_ippqo")
+atlas = ExtResource("6_vcm01")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eefo"]
-atlas = ExtResource("4_ippqo")
+atlas = ExtResource("6_vcm01")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_50w3h"]
@@ -164,27 +254,27 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpha5"]
-atlas = ExtResource("5_t1idp")
+atlas = ExtResource("7_rwfci")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7v4ke"]
-atlas = ExtResource("5_t1idp")
+atlas = ExtResource("7_rwfci")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ai8fd"]
-atlas = ExtResource("5_t1idp")
+atlas = ExtResource("7_rwfci")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wq51j"]
-atlas = ExtResource("5_t1idp")
+atlas = ExtResource("7_rwfci")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwbw0"]
-atlas = ExtResource("5_t1idp")
+atlas = ExtResource("7_rwfci")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxrge"]
-atlas = ExtResource("5_t1idp")
+atlas = ExtResource("7_rwfci")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fgc2d"]
@@ -213,127 +303,63 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="ThoughtWorld" type="Node2D"]
-script = ExtResource("1_05wmn")
-
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -100
-
-[node name="ColorRect" type="ColorRect" parent="Background"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.0745098, 0.0745098, 0.0745098, 1)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_368lr")
-
-[node name="Node" type="Node2D" parent="." node_paths=PackedStringArray("area", "center", "halos", "label", "preview")]
-script = ExtResource("1_r08oa")
+[node name="ThoughtNode" type="Node2D" node_paths=PackedStringArray("anim", "area", "center", "halos", "label", "preview")]
+script = ExtResource("1_sx0cq")
+anim = NodePath("AnimationPlayer")
 area = NodePath("Area2D")
 center = NodePath("Center")
 halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
 label = NodePath("Label")
 preview = NodePath("Sprite2D")
 
-[node name="Area2D" type="Area2D" parent="Node"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jhvph")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2147483649
 collision_mask = 2147483649
-script = ExtResource("2_fwu1d")
+script = ExtResource("2_imcy3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_fb1n0")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node"]
-position = Vector2(0, -48)
-texture = ExtResource("1_wh56a")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(61, -19)
+texture = ExtResource("3_6vinc")
 centered = false
+offset = Vector2(-63, -29)
 
-[node name="Center" type="AnimatedSprite2D" parent="Node"]
+[node name="Center" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_boaof")
 autoplay = "default"
 frame_progress = 0.879753
 
-[node name="Halo1" type="AnimatedSprite2D" parent="Node"]
+[node name="Halo1" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4, -3)
 sprite_frames = SubResource("SpriteFrames_qphnp")
 autoplay = "default"
 frame_progress = 0.750042
 
-[node name="Halo2" type="AnimatedSprite2D" parent="Node"]
+[node name="Halo2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_50w3h")
 autoplay = "default"
 frame_progress = 0.401442
 
-[node name="Halo3" type="AnimatedSprite2D" parent="Node"]
+[node name="Halo3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_fgc2d")
 autoplay = "default"
 frame_progress = 0.941171
 
-[node name="Label" type="RichTextLabel" parent="Node"]
+[node name="Label" type="RichTextLabel" parent="."]
 offset_top = -18.0
 offset_right = 62.0
 offset_bottom = -1.0
-theme_override_fonts/normal_font = ExtResource("2_voq7o")
-bbcode_enabled = true
-text = "[right]Thought[/right]"
-scroll_active = false
-
-[node name="Node2" type="Node2D" parent="." node_paths=PackedStringArray("area", "center", "halos", "label", "preview")]
-position = Vector2(-127, 46)
-script = ExtResource("1_r08oa")
-area = NodePath("Area2D")
-center = NodePath("Center")
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
-label = NodePath("Label")
-preview = NodePath("Sprite2D")
-
-[node name="Area2D" type="Area2D" parent="Node2"]
-collision_layer = 2147483649
-collision_mask = 2147483649
-script = ExtResource("2_fwu1d")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2/Area2D"]
-shape = SubResource("RectangleShape2D_fb1n0")
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2"]
-position = Vector2(0, -48)
-texture = ExtResource("1_wh56a")
-centered = false
-
-[node name="Center" type="AnimatedSprite2D" parent="Node2"]
-sprite_frames = SubResource("SpriteFrames_boaof")
-autoplay = "default"
-frame_progress = 0.735933
-
-[node name="Halo1" type="AnimatedSprite2D" parent="Node2"]
-position = Vector2(-4, -3)
-sprite_frames = SubResource("SpriteFrames_qphnp")
-autoplay = "default"
-frame_progress = 0.606217
-
-[node name="Halo2" type="AnimatedSprite2D" parent="Node2"]
-position = Vector2(-2, 0)
-sprite_frames = SubResource("SpriteFrames_50w3h")
-autoplay = "default"
-frame_progress = 0.257619
-
-[node name="Halo3" type="AnimatedSprite2D" parent="Node2"]
-position = Vector2(-2, 0)
-sprite_frames = SubResource("SpriteFrames_fgc2d")
-autoplay = "default"
-frame_progress = 0.797348
-
-[node name="Label" type="RichTextLabel" parent="Node2"]
-offset_top = -18.0
-offset_right = 62.0
-offset_bottom = -1.0
-theme_override_fonts/normal_font = ExtResource("2_voq7o")
+pivot_offset = Vector2(62, 0)
+theme_override_fonts/normal_font = ExtResource("8_t4j36")
 bbcode_enabled = true
 text = "[right]Thought[/right]"
 scroll_active = false

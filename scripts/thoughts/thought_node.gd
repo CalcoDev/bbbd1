@@ -2,6 +2,7 @@ class_name ThoughtNode
 extends Node2D
 
 @export_group("References")
+@export var anim: AnimationPlayer = null
 @export var area: SelectableComponent = null
 @export var center: AnimatedSprite2D = null
 @export var halos: Array[AnimatedSprite2D] = []
@@ -13,16 +14,21 @@ var mouse_offset = Vector2.ZERO
 
 var is_arrow: bool = false
 
+var should_reset_anim: bool = false
+
 func _ready() -> void:
 	area.on_mouse_enter.connect(on_mouse_enter)
 	area.on_mouse_exit.connect(on_mouse_exit)
 	area.on_mouse_down.connect(on_mouse_down)
 	area.on_mouse_up.connect(on_mouse_up)
 
+	anim.play("info_exit")
+	should_reset_anim = false
+
 func _process(_delta: float) -> void:
 	if is_moving:
 		global_position = get_global_mouse_position() + mouse_offset
-		ThoughtWorld.instance.handle_is_moving()
+		ThoughtWorldCls.instance.handle_is_moving()
 	if is_arrow:
 		queue_redraw()
 	
@@ -39,9 +45,14 @@ func _draw() -> void:
 
 func on_mouse_enter() -> void:
 	center.modulate = Color.RED
+	anim.play("info_enter")
+	should_reset_anim = true
 
 func on_mouse_exit() -> void:
 	center.modulate = Color.WHITE
+	if not is_arrow and not is_moving:
+		anim.play("info_exit")
+		should_reset_anim = false
 
 func on_mouse_down(event: InputEventMouseButton) -> void:
 	if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -49,14 +60,14 @@ func on_mouse_down(event: InputEventMouseButton) -> void:
 		start_move()
 	elif event.button_index == MOUSE_BUTTON_LEFT:
 		start_arrow()
-		ThoughtWorld.instance.handle_start_arrow(self)
+		ThoughtWorldCls.instance.handle_start_arrow(self)
 	
 func on_mouse_up(event: InputEventMouseButton) -> void:
 	if event.button_index == MOUSE_BUTTON_RIGHT:
 		stop_move()
 	# NOTE(calco): Not called here because we will call it outside usually
 	elif event.button_index == MOUSE_BUTTON_LEFT:
-		ThoughtWorld.instance.handle_stop_arrow(self)
+		ThoughtWorldCls.instance.handle_stop_arrow(self)
 
 func start_move():
 	is_moving = true
@@ -71,4 +82,6 @@ func start_arrow():
 func stop_arrow():
 	is_arrow = false
 	queue_redraw()
-	# get_tree().create_timer(0.1).timeout.connect(func(): queue_redraw())
+	if should_reset_anim:
+		anim.play("info_exit")
+		should_reset_anim = false
