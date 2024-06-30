@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 	gather_input()
 
 	# Thought world
-	if Input.is_action_just_pressed("THOUGHT_WORLD"):
+	if Input.is_action_just_pressed("THOUGHT_WORLD") and ThoughtWorldCls.instance.time_changed != Time.get_ticks_msec():
 		ThoughtWorldCls.instance.toggle_visibily()
 		Game.paused = true
 

@@ -12,6 +12,8 @@ var connections: Array = []
 
 var hovered_node: ThoughtNode = null
 
+var time_changed = 0
+
 func _enter_tree() -> void:
 	if instance != null and is_instance_valid(instance):
 		push_warning("WARNING: Thought World instance already exists and is still valid!")
@@ -102,3 +104,4 @@ func handle_stop_arrow(node: ThoughtNode) -> void:
 func toggle_visibily():
 	canvas.visible = !canvas.visible
 	$"../CanvasLayer".visible = !$"../CanvasLayer".visible
+	time_changed = Time.get_ticks_msec()
