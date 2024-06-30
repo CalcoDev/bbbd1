@@ -23,8 +23,8 @@ func _process(_delta: float) -> void:
 	if is_moving:
 		global_position = get_global_mouse_position() + mouse_offset
 		ThoughtWorld.instance.handle_is_moving()
-	# if is_arrow:
-	queue_redraw()
+	if is_arrow:
+		queue_redraw()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -70,3 +70,5 @@ func start_arrow():
 
 func stop_arrow():
 	is_arrow = false
+	queue_redraw()
+	# get_tree().create_timer(0.1).timeout.connect(func(): queue_redraw())

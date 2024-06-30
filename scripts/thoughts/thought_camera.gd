@@ -18,10 +18,9 @@ func _process(_delta: float) -> void:
     var neg = Input.is_action_just_pressed("THOUGHT_ZOOM_NEG") as int
     var pos = Input.is_action_just_pressed("THOUGHT_ZOOM_POS") as int
     var mwheel_scroll = pos - neg
-    var z = zoom.x + zoom_sensitivity * sign(mwheel_scroll)
-    zoom += Vector2.ONE * clamp(z, min_zoom, max_zoom)
-
-    # if abs(mwheel_scroll) > 0:
-    #     global_position = get_global_mouse_position()
+    var z = zoom_sensitivity * sign(mwheel_scroll)
+    zoom += Vector2.ONE * z
+    zoom.x = clamp(zoom.x, min_zoom, max_zoom)
+    zoom.y = clamp(zoom.y, min_zoom, max_zoom)
     
     prev_mouse_pos = mouse_pos

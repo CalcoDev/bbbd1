@@ -38,6 +38,9 @@ func intersect_line_point(s: Vector2, e: Vector2, thickness: float, p: Vector2):
 	var line = (e - s)
 	var line_len = line.length()
 
+	if s.distance_to(p) < 5 or e.distance_to(p) < 5:
+		return false
+
 	if line_len == 0:
 		var d = (p - s).length()
 		if d < thickness:
@@ -73,5 +76,8 @@ func handle_start_arrow(node: ThoughtNode) -> void:
 func handle_stop_arrow(node: ThoughtNode) -> void:
 	if arrow_from == node:
 		return
+	for connection in connections:
+		if connection[0] == arrow_from and connection[1] == node:
+			return
 	connections.append([arrow_from, node, false])
 	queue_redraw()
