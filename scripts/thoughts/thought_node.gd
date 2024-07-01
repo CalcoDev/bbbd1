@@ -55,6 +55,7 @@ func on_mouse_enter() -> void:
 	should_reset_anim = true
 	is_open = true
 	ThoughtWorldCls.instance.hovered_node = self
+	ThoughtWorldCls.instance.hovered_node_real = self
 
 func on_mouse_exit() -> void:
 	if not is_arrow and not is_moving and not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
@@ -63,6 +64,7 @@ func on_mouse_exit() -> void:
 		should_reset_anim = false
 		is_open = false
 		ThoughtWorldCls.instance.hovered_node = null
+		ThoughtWorldCls.instance.hovered_node_real = null
 
 func on_mouse_down(event: InputEventMouseButton) -> void:
 	if event.button_index == MOUSE_BUTTON_RIGHT:

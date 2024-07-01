@@ -12,6 +12,8 @@ var connections: Array = []
 
 var hovered_node: ThoughtNode = null
 
+var hovered_node_real: ThoughtNode = null
+
 var time_changed = 0
 
 func _enter_tree() -> void:
@@ -26,7 +28,7 @@ func _process(_delta: float) -> void:
 		toggle_visibily()
 		Game.paused = false
 	
-	var remove_held = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and arrow_from == null
+	var remove_held = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and arrow_from == null and hovered_node == null
 	var should_queue_redraw = false
 	for idx in range(len(connections) - 1, -1, -1):
 		var connection = connections[idx]
@@ -49,7 +51,13 @@ func _process(_delta: float) -> void:
 			connection[2] = false
 	if should_queue_redraw:
 		queue_redraw()
-		
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			if not hovered_node_real == null:
+				hovered_node = null
+
 func intersect_line_point(s: Vector2, e: Vector2, thickness: float, p: Vector2):
 	var line = (e - s)
 	var line_len = line.length()
@@ -94,6 +102,7 @@ func handle_stop_arrow(node: ThoughtNode) -> void:
 			return
 	connections.append([arrow_from, node, false])
 	arrow_from.on_mouse_exit()
+	hovered_node = node
 
 	# arrow_from.anim.play("info_exit")
 	# arrow_from.should_reset_anim = false
