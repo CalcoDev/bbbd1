@@ -17,6 +17,7 @@ var is_arrow: bool = false
 var should_reset_anim: bool = false
 
 var is_open: bool = false
+var is_mouse_inside: bool = false
 
 func _ready() -> void:
 	area.on_mouse_enter.connect(on_mouse_enter)
@@ -47,6 +48,7 @@ func _draw() -> void:
 		draw_line(start, end, Color.WHITE, 2, false)
 
 func on_mouse_enter() -> void:
+	is_mouse_inside = true
 	if is_open:
 		return
 	
@@ -58,6 +60,7 @@ func on_mouse_enter() -> void:
 	ThoughtWorldCls.instance.hovered_node_real = self
 
 func on_mouse_exit() -> void:
+	is_mouse_inside = false
 	if not is_arrow and not is_moving and not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		center.modulate = Color.WHITE
 		anim.play("info_exit")

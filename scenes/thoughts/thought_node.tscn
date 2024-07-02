@@ -305,11 +305,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="ThoughtNode" type="Node2D" node_paths=PackedStringArray("anim", "area", "center", "label", "preview")]
+[node name="ThoughtNode" type="Node2D" node_paths=PackedStringArray("anim", "area", "center", "halos", "label", "preview")]
 script = ExtResource("1_sx0cq")
-anim = NodePath("")
+anim = NodePath("AnimationPlayer")
 area = NodePath("Area2D")
-center = NodePath("")
+center = NodePath("Center")
+halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
 label = NodePath("Label")
 preview = NodePath("Sprite2D")
 

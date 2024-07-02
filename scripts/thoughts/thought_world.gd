@@ -55,6 +55,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if not hovered_node_real == null:
+				if not hovered_node.is_mouse_inside:
+					hovered_node.on_mouse_exit()
 				hovered_node = null
 
 func intersect_line_point(s: Vector2, e: Vector2, thickness: float, p: Vector2):
@@ -111,7 +113,7 @@ func handle_stop_arrow(node: ThoughtNode) -> void:
 
 func toggle_visibily():
 	canvas.visible = !canvas.visible
-	$"../CanvasLayer".visible = !$"../CanvasLayer".visible
+	$"../BackgroundLayer".visible = !$"../BackgroundLayer".visible
 	time_changed = Time.get_ticks_msec()
 
 func toggle_during_gameplay():
