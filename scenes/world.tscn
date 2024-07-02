@@ -23,10 +23,12 @@ ease = 2
 
 [sub_resource type="Resource" id="Resource_02fa0"]
 script = ExtResource("12_c146o")
-text = "Just a tree...[n]
+text = "[speaker Emplier]
+Just a tree...[n]
 [speed 0.5]Unless...
 
 [newpage]
+[Speaker]
 [speed 30]Nah, just a normal tree..
 
 [newpage]
@@ -137,9 +139,11 @@ tile_set = ExtResource("1_0yn7t")
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 32
 
-[node name="DialogueManager" parent="UI" node_paths=PackedStringArray("anim", "text_display", "dialogue_box") instance=ExtResource("12_a74bc")]
+[node name="DialogueManager" parent="UI" node_paths=PackedStringArray("anim", "text_display", "dialogue_box", "speaker_container", "speaker_tex") instance=ExtResource("12_a74bc")]
 visible = false
 mouse_filter = 2
 anim = NodePath("AnimationPlayer")
-text_display = NodePath("DialogueDispaly/TextContainer/RichTextLabel")
+text_display = NodePath("DialogueDispaly/HBoxContainer/TextContainer/RichTextLabel")
 dialogue_box = NodePath("DialogueDispaly")
+speaker_container = NodePath("DialogueDispaly/HBoxContainer/MarginContainer")
+speaker_tex = NodePath("DialogueDispaly/HBoxContainer/MarginContainer/SpeakerBox/MarginContainer/SpeakerTexture")

@@ -56,12 +56,11 @@ func display_interaction():
         InteractionDisplayType.Point:
             get_tree().create_tween().tween_property(display_point, "scale", Vector2.ONE, 0.15)
 
-func hide_interaction():
-    match display_type:
-        InteractionDisplayType.Spin:
-            get_tree().create_tween().tween_property(get_parent(), "rotation", 0, 0.15)
-        InteractionDisplayType.Point:
-            get_tree().create_tween().tween_property(display_point, "scale", Vector2.ZERO, 0.15)
+func hide_interaction(force_hide: bool=false):
+    if force_hide or display_type == InteractionDisplayType.Spin:
+        get_tree().create_tween().tween_property(get_parent(), "rotation", 0, 0.15)
+    if force_hide or display_type == InteractionDisplayType.Point:
+        get_tree().create_tween().tween_property(display_point, "scale", Vector2.ZERO, 0.15)
 
 func _enter_tree() -> void:
     if Engine.is_editor_hint():
@@ -78,7 +77,7 @@ func _ready() -> void:
     #     InteractionType.Area:
     collision_layer = InteractorComponent.INTERACTION_LAYER
     collision_mask = InteractorComponent.INTERACTOR_LAYER
-    hide_interaction()
+    hide_interaction(true)
         # InteractionType.Point:
         #     POINTS.append(self)
 

@@ -25,14 +25,18 @@ class Token:
         var fi = min(sp, eq)
         if fi == - 1:
             fi = max(sp, eq)
+        if fi == - 1:
+            return ""
         return s.substr(fi + 1, -1)
 
     static func _get_param_list(s: String) -> Array:
+        if s == "":
+            return []
         var params = s.split(" ")
         for i in len(params):
             if "=" in params[i]:
                 var s0 = params[i].split("=")
-                assert(len(s0) == 2, "Given parameter was equality based but had more than 1 equal sign!")
+                assert(len(s0) == 2, "Given parameter was equality based but didn't have value!")
                 params[i] = [s0[0].strip_edges(), s0[1].strip_edges()]
             else:
                 params[i] = params[i].strip_edges()
@@ -43,14 +47,15 @@ class Token:
         var value_str = Token._strip_token(s)
         var value_arr = Token._get_param_list(value_str)
         match type_str:
-            # TODO(calco): Add support for this
-            # "Speaker":
-            #     var speaker = DialogueManager.try_get_speaker(value_arr[0])
-            #     assert(speaker != null, "Referenced speaker was null!")
-            #     return Token.new(SPEAKER, speaker)
+            "speaker":
+                print("TOK: ", value_arr, " | ", value_str)
+                var speaker: Speaker = null
+                if len(value_arr) > 0:
+                    speaker = DialogueManager.SPEAKERS_REGISTER[value_arr[0]]
+                    assert(speaker != null, "ERROR: Referenced speaker was null!")
+                return Token.new(SPEAKER, speaker)
             "speed":
                 return Token.new(SPEED, value_arr[0].to_float())
-                print("speed token made")
             "wait":
                 return Token.new(WAIT, value_arr[0].to_float())
             "newpage":

@@ -8,6 +8,9 @@ static var instance: DialogueManager = null
 @export var text_display: RichTextLabel = null
 @export var dialogue_box: Control = null
 
+@export var speaker_container: MarginContainer = null
+@export var speaker_tex: TextureRect = null
+
 @export var is_hidden: bool = false:
 	set(value):
 		if is_hidden == value:
@@ -20,7 +23,61 @@ static var instance: DialogueManager = null
 
 # Stuff about current dialogue
 var current_dialogue: Dialogue = null
+var current_speaker: Speaker = null:
+	set(value):
+		if current_speaker == value:
+			return
+		current_speaker = value
+		if current_speaker == null:
+			if speaker_container.visible:
+				speaker_container.visible = false
+		else:
+			if not speaker_container.visible:
+				speaker_container.visible = true
+			speaker_tex.texture = current_speaker.icon
 var speed: float = 7.5
+
+static var SPEAKERS_REGISTER: Dictionary = {}:
+	get:
+		assert(SPEAKERS_INIT, "ERROR: Tried accessing speakers register without it being initialised.")
+		return SPEAKERS_REGISTER
+
+static var SPEAKERS_INIT: bool = false
+
+func _enter_tree() -> void:
+	if instance != null:
+		push_warning("WARNING: Dialogue Manager instantiated twice!")
+		queue_free()
+		return
+	instance = self
+	visible = true
+	hide_box()
+
+	if not SPEAKERS_INIT:
+		SPEAKERS_INIT = true
+		var dir_q = []
+		var speakers_dir = DirAccess.open("res://resources/dialogue/speakers")
+		dir_q.append([speakers_dir, "res://resources/dialogue/speakers"])
+		while len(dir_q) > 0:
+			var dir = dir_q[0][0]
+			var path = dir_q[0][1]
+			dir_q.remove_at(0)
+			dir.list_dir_begin()
+			var file_path = dir.get_next()
+			while file_path != "":
+				var full_path = path + "/" + file_path
+				if dir.current_is_dir():
+					dir_q.append([DirAccess.open(full_path), full_path])
+					file_path = dir.get_next()
+					continue
+				var res = ResourceLoader.load(full_path)
+				if res is Speaker:
+					SPEAKERS_REGISTER[res.name] = res
+				file_path = dir.get_next()
+
+func _process(_delta: float) -> void:
+	if not is_hidden and visible and speaker_container.visible:
+		speaker_container.custom_minimum_size.x = speaker_container.size.y - 10
 
 func display_box() -> void:
 	if not is_hidden:
@@ -64,8 +121,8 @@ func play_dialogue_coro(coro: Coro) -> void:
 
 		match token.type:
 			# TODO(calco): Work on this later
-			# Dialogue.Token.SPEAKER:
-			# 	_speaker = token.Value
+			Dialogue.Token.SPEAKER:
+				current_speaker = token.value
 			Dialogue.Token.SPEED:
 				speed = token.value
 			Dialogue.Token.WAIT:
@@ -116,12 +173,3 @@ func await_player_input(action):
 		await Game.on_pre_process
 		if Input.is_action_just_pressed(action):
 			break
-		
-func _enter_tree() -> void:
-	if instance != null:
-		push_warning("WARNING: Dialogue Manager instantiated twice!")
-		queue_free()
-		return
-	instance = self
-	visible = true
-	hide_box()

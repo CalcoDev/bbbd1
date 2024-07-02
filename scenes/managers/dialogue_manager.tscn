@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg55seij7m8so"]
+[gd_scene load_steps=12 format=3 uid="uid://bg55seij7m8so"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_manager.gd" id="1_jyuw8"]
 [ext_resource type="Texture2D" uid="uid://jxlh2eiacav" path="res://assets/art/dialogue/dialogue_nine_slice.png" id="2_0rm8p"]
+[ext_resource type="Texture2D" uid="uid://dqpkvyaihjc51" path="res://assets/art/dialogue/dialogue_speaker_box.png" id="3_b40me"]
 [ext_resource type="Texture2D" uid="uid://drj8meb57n12v" path="res://assets/art/dialogue/dialogue_tree_background.png" id="3_dd2km"]
+[ext_resource type="Texture2D" uid="uid://dap2gk18dria" path="res://assets/art/dialogue/dialogue_emplier.png" id="4_gnflu"]
 [ext_resource type="FontFile" uid="uid://7veepj8v2fp4" path="res://resources/fonts/Fool.ttf" id="4_yx64l"]
 [ext_resource type="Texture2D" uid="uid://3ajjjve2j475" path="res://assets/art/dialogue/dialogue_mid_deco.png" id="5_qe36k"]
 
@@ -62,7 +64,7 @@ _data = {
 "dialogue_exit": SubResource("Animation_bvysf")
 }
 
-[node name="DialogueManager" type="Control" node_paths=PackedStringArray("anim", "text_display", "dialogue_box")]
+[node name="DialogueManager" type="Control" node_paths=PackedStringArray("anim", "text_display", "dialogue_box", "speaker_container", "speaker_tex")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,8 +73,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jyuw8")
 anim = NodePath("AnimationPlayer")
-text_display = NodePath("DialogueDispaly/TextContainer/RichTextLabel")
+text_display = NodePath("DialogueDispaly/HBoxContainer/TextContainer/RichTextLabel")
 dialogue_box = NodePath("DialogueDispaly")
+speaker_container = NodePath("DialogueDispaly/HBoxContainer/MarginContainer")
+speaker_tex = NodePath("DialogueDispaly/HBoxContainer/MarginContainer/SpeakerBox/MarginContainer/SpeakerTexture")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -101,6 +105,66 @@ patch_margin_bottom = 23
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueDispaly"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueDispaly/HBoxContainer"]
+custom_minimum_size = Vector2(69, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeakerBox" type="NinePatchRect" parent="DialogueDispaly/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_b40me")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueDispaly/HBoxContainer/MarginContainer/SpeakerBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="SpeakerTexture" type="TextureRect" parent="DialogueDispaly/HBoxContainer/MarginContainer/SpeakerBox/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_gnflu")
+
+[node name="TextContainer" type="MarginContainer" parent="DialogueDispaly/HBoxContainer"]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueDispaly/HBoxContainer/TextContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_yx64l")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Hello guys this if [color=#eb9834]fireball[/color] man.
+asdijadioajdiaj"
+scroll_active = false
+
 [node name="BackgroundContainer" type="MarginContainer" parent="DialogueDispaly"]
 layout_mode = 1
 anchors_preset = 15
@@ -126,27 +190,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_dd2km")
 stretch_mode = 3
-
-[node name="TextContainer" type="MarginContainer" parent="DialogueDispaly"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="RichTextLabel" type="RichTextLabel" parent="DialogueDispaly/TextContainer"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("4_yx64l")
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "Hello guys this if [color=#eb9834]fireball[/color] man.
-asdijadioajdiaj"
-scroll_active = false
 
 [node name="MidDecoUp" type="TextureRect" parent="DialogueDispaly"]
 layout_mode = 1
