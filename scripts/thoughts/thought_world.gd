@@ -24,9 +24,8 @@ func _enter_tree() -> void:
 	toggle_visibily()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("THOUGHT_WORLD"):
-		toggle_visibily()
-		Game.paused = false
+	if Input.is_action_just_pressed("THOUGHT_WORLD") and Game.active_gameplay_scene != null:
+		toggle_during_gameplay()
 	
 	var remove_held = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and arrow_from == null and hovered_node == null
 	var should_queue_redraw = false
@@ -114,3 +113,10 @@ func toggle_visibily():
 	canvas.visible = !canvas.visible
 	$"../CanvasLayer".visible = !$"../CanvasLayer".visible
 	time_changed = Time.get_ticks_msec()
+
+func toggle_during_gameplay():
+	toggle_visibily()
+	if canvas.visible:
+		Game.time_scale = 0.1
+	else:
+		Game.time_scale = 1.0

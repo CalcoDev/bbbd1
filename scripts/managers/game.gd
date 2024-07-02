@@ -1,6 +1,7 @@
 extends Node
 
 signal on_pre_process()
+signal on_time_scale_changed(value: float)
 
 @export var current_player: Player = null
 
@@ -19,6 +20,14 @@ signal on_pre_process()
             active_gameplay_scene.pause()
         else:
             active_gameplay_scene.resume()
+
+@export var time_scale: float = 1.0:
+    set(value):
+        if time_scale == value:
+            return
+        time_scale = value
+        Engine.time_scale = time_scale
+        on_time_scale_changed.emit(time_scale)
 
 @export var active_gameplay_scene: GameplaySceneComponent = null
 

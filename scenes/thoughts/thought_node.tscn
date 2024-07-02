@@ -1,11 +1,13 @@
-[gd_scene load_steps=42 format=3 uid="uid://bxqnpmfpbv5mw"]
+[gd_scene load_steps=44 format=3 uid="uid://bxqnpmfpbv5mw"]
 
 [ext_resource type="Script" path="res://scripts/thoughts/thought_node.gd" id="1_sx0cq"]
 [ext_resource type="Script" path="res://scripts/components/selectable_component.gd" id="2_imcy3"]
+[ext_resource type="Script" path="res://scripts/node_helpers/scaled_time_animation_player.gd" id="2_wrkfy"]
 [ext_resource type="Texture2D" uid="uid://bh048lgj4gm6y" path="res://assets/art/thought/sample_thought_preview.png" id="3_6vinc"]
 [ext_resource type="Texture2D" uid="uid://qfklw2tulhtp" path="res://assets/art/thought/node_animation.png" id="4_xgrpt"]
 [ext_resource type="Texture2D" uid="uid://cf5semhpwep8t" path="res://assets/art/thought/node_halo_1.png" id="5_jnvh8"]
 [ext_resource type="Texture2D" uid="uid://rvdnu04hw6kq" path="res://assets/art/thought/node_halo_2.png" id="6_vcm01"]
+[ext_resource type="Script" path="res://scripts/node_helpers/scaled_time_animated_sprite.gd" id="6_vxk1s"]
 [ext_resource type="Texture2D" uid="uid://cyd2pevmcht1d" path="res://assets/art/thought/node_halo_3.png" id="7_rwfci"]
 [ext_resource type="FontFile" uid="uid://7veepj8v2fp4" path="res://resources/fonts/Fool.ttf" id="8_t4j36"]
 
@@ -36,35 +38,6 @@ tracks/1/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_6o85f"]
-resource_name = "info_exit"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_me8n3"]
 resource_name = "info_enter"
 length = 0.3
@@ -92,6 +65,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6o85f"]
+resource_name = "info_exit"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jhvph"]
@@ -303,12 +305,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="ThoughtNode" type="Node2D" node_paths=PackedStringArray("anim", "area", "center", "halos", "label", "preview")]
+[node name="ThoughtNode" type="Node2D" node_paths=PackedStringArray("anim", "area", "center", "label", "preview")]
 script = ExtResource("1_sx0cq")
-anim = NodePath("AnimationPlayer")
+anim = NodePath("")
 area = NodePath("Area2D")
-center = NodePath("Center")
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+center = NodePath("")
 label = NodePath("Label")
 preview = NodePath("Sprite2D")
 
@@ -316,6 +317,9 @@ preview = NodePath("Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_jhvph")
 }
+speed_scale = 10.0
+script = ExtResource("2_wrkfy")
+use_unscaled_time = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2147483649
@@ -335,24 +339,32 @@ offset = Vector2(-63, -29)
 sprite_frames = SubResource("SpriteFrames_boaof")
 autoplay = "default"
 frame_progress = 0.879753
+script = ExtResource("6_vxk1s")
 
 [node name="Halo1" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4, -3)
 sprite_frames = SubResource("SpriteFrames_qphnp")
 autoplay = "default"
 frame_progress = 0.750042
+speed_scale = 10.0
+script = ExtResource("6_vxk1s")
 
 [node name="Halo2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_50w3h")
 autoplay = "default"
 frame_progress = 0.401442
+speed_scale = 10.0
+script = ExtResource("6_vxk1s")
 
 [node name="Halo3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_fgc2d")
 autoplay = "default"
 frame_progress = 0.941171
+speed_scale = 10.0
+script = ExtResource("6_vxk1s")
+use_unscaled_time = true
 
 [node name="Label" type="RichTextLabel" parent="."]
 offset_top = -18.0

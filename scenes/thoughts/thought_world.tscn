@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bxqnpmfpbv5mw" path="res://scenes/thoughts/thought_node.tscn" id="3_n3d3r"]
 
 [node name="ThoughtWorld" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 layer = 64
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.392157)
 
 [node name="Camera2D" type="Node2D" parent="." node_paths=PackedStringArray("canvas")]
 script = ExtResource("2_368lr")
@@ -28,21 +28,41 @@ canvas = NodePath("..")
 script = ExtResource("1_05wmn")
 canvas = NodePath("..")
 
-[node name="ThoughtNode" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+[node name="ThoughtNode" parent="." node_paths=PackedStringArray("anim", "area", "center", "label", "preview") instance=ExtResource("3_n3d3r")]
+anim = NodePath("AnimationPlayer")
+area = NodePath("Area2D")
+center = NodePath("Center")
+label = NodePath("Label")
+preview = NodePath("Sprite2D")
 
-[node name="ThoughtNode2" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode2" parent="." node_paths=PackedStringArray("anim", "area", "center", "label", "preview") instance=ExtResource("3_n3d3r")]
 position = Vector2(130, 60)
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+anim = NodePath("AnimationPlayer")
+area = NodePath("Area2D")
+center = NodePath("Center")
+label = NodePath("Label")
+preview = NodePath("Sprite2D")
 
-[node name="ThoughtNode3" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode3" parent="." node_paths=PackedStringArray("anim", "area", "center", "label", "preview") instance=ExtResource("3_n3d3r")]
 position = Vector2(-127, 69)
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+anim = NodePath("AnimationPlayer")
+area = NodePath("Area2D")
+center = NodePath("Center")
+label = NodePath("Label")
+preview = NodePath("Sprite2D")
 
-[node name="ThoughtNode4" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode4" parent="." node_paths=PackedStringArray("anim", "area", "center", "label", "preview") instance=ExtResource("3_n3d3r")]
 position = Vector2(-130, -60)
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+anim = NodePath("AnimationPlayer")
+area = NodePath("Area2D")
+center = NodePath("Center")
+label = NodePath("Label")
+preview = NodePath("Sprite2D")
 
-[node name="ThoughtNode5" parent="." node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode5" parent="." node_paths=PackedStringArray("anim", "area", "center", "label", "preview") instance=ExtResource("3_n3d3r")]
 position = Vector2(129, -70)
-halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
+anim = NodePath("AnimationPlayer")
+area = NodePath("Area2D")
+center = NodePath("Center")
+label = NodePath("Label")
+preview = NodePath("Sprite2D")
