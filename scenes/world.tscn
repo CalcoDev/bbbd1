@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c7km30d1epb0j" path="res://assets/art/interactions/interaction_point.png" id="10_6fb4x"]
 [ext_resource type="Script" path="res://scripts/interactions/interaction_component.gd" id="11_427b1"]
 [ext_resource type="PackedScene" uid="uid://bg55seij7m8so" path="res://scenes/managers/dialogue_manager.tscn" id="12_a74bc"]
-[ext_resource type="Script" path="res://scripts/interactions/dialogue_effect.gd" id="12_c146o"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_effect.gd" id="12_c146o"]
 
 [sub_resource type="Resource" id="Resource_3n7nq"]
 script = ExtResource("3_4iwpp")
@@ -23,8 +23,14 @@ ease = 2
 
 [sub_resource type="Resource" id="Resource_02fa0"]
 script = ExtResource("12_c146o")
-text = "Just a tree...
-Unless..."
+text = "Just a tree...[n]
+[speed 0.5]Unless...
+
+[newpage]
+[speed 30]Nah, just a normal tree..
+
+[newpage]
+[speed 100] UNLESS?!?!?"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_scsl0"]
 radius = 10.7703
@@ -69,7 +75,9 @@ tween_on_load = false
 follow_offset = Vector2(0, -20)
 follow_damping = true
 
-[node name="Player" parent="." instance=ExtResource("5_ygjec")]
+[node name="Player" parent="." node_paths=PackedStringArray("sprite", "_interactor") instance=ExtResource("5_ygjec")]
+sprite = NodePath("AnimatedSprite2D")
+_interactor = NodePath("InteractorComponent")
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -129,6 +137,9 @@ tile_set = ExtResource("1_0yn7t")
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 32
 
-[node name="DialogueManager" parent="UI" instance=ExtResource("12_a74bc")]
+[node name="DialogueManager" parent="UI" node_paths=PackedStringArray("anim", "text_display", "dialogue_box") instance=ExtResource("12_a74bc")]
 visible = false
 mouse_filter = 2
+anim = NodePath("AnimationPlayer")
+text_display = NodePath("DialogueDispaly/TextContainer/RichTextLabel")
+dialogue_box = NodePath("DialogueDispaly")
