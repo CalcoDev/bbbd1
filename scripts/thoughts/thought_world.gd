@@ -2,6 +2,7 @@ class_name ThoughtWorldCls
 extends Node2D
 
 @export var canvas: CanvasLayer = null
+@export var camera: ThoughtCamera = null
 
 static var instance: ThoughtWorldCls = null
 
@@ -52,12 +53,18 @@ func _process(_delta: float) -> void:
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not canvas.visible:
+		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if not hovered_node_real == null:
 				if not hovered_node.is_mouse_inside:
 					hovered_node.on_mouse_exit()
 				hovered_node = null
+			if arrow_from != null and hovered_node_real == null:
+				if not arrow_from.is_mouse_inside:
+					arrow_from.on_mouse_exit()
+				arrow_from = null
 
 func intersect_line_point(s: Vector2, e: Vector2, thickness: float, p: Vector2):
 	var line = (e - s)
@@ -98,10 +105,11 @@ func handle_start_arrow(node: ThoughtNode) -> void:
 func handle_stop_arrow(node: ThoughtNode) -> void:
 	if arrow_from == node:
 		return
-	for connection in connections:
-		if connection[0] == arrow_from and connection[1] == node:
-			return
-	connections.append([arrow_from, node, false])
+	if node != null:
+		for connection in connections:
+			if connection[0] == arrow_from and connection[1] == node:
+				return
+		connections.append([arrow_from, node, false])
 	arrow_from.on_mouse_exit()
 	hovered_node = node
 
@@ -120,5 +128,12 @@ func toggle_during_gameplay():
 	toggle_visibily()
 	if canvas.visible:
 		Game.time_scale = 0.1
+		process_mode = PROCESS_MODE_ALWAYS
+		camera.prev_mouse_pos = get_viewport().get_mouse_position()
 	else:
 		Game.time_scale = 1.0
+		handle_stop_arrow(null)
+		process_mode = PROCESS_MODE_DISABLED
+		for child in get_children():
+			if child is ThoughtNode:
+				child.stop()

@@ -1,6 +1,10 @@
 class_name ThoughtCamera
 extends Node2D
 
+@export var parallax: Array[Node2D] = []
+@export var parallax_effect: Array[float] = []
+var _parallax_offsets: Array[Vector2] = []
+
 @export var canvas: CanvasLayer = null
 
 @export var zoom_sensitivity: float = 0.05
@@ -9,16 +13,21 @@ extends Node2D
 
 var prev_mouse_pos: Vector2 = Vector2.ZERO
 
+func _enter_tree() -> void:
+    for i in len(parallax):
+        _parallax_offsets.append(parallax[i].global_position)
+
 func _process(_delta: float) -> void:
     var mouse_pos = get_viewport().get_mouse_position()
     var mwheel_held = Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)
 
-    # if mwheel_held:
-    #     var dmouse = mouse_pos - prev_mouse_pos
-    #     global_position -= dmouse / zoom.x
     if mwheel_held:
         var dmouse = mouse_pos - prev_mouse_pos
         canvas.offset += dmouse
+    
+    for i in len(parallax):
+        parallax[i].global_position = _parallax_offsets[i] + (canvas.offset - Vector2(320, 180) / 2 - _parallax_offsets[i]) * (1 - parallax_effect[i])
+        # base pos + (curr pos - base pos) * (1 - multiple)
     
     var neg = Input.is_action_just_pressed("THOUGHT_ZOOM_NEG") as int
     var pos = Input.is_action_just_pressed("THOUGHT_ZOOM_POS") as int

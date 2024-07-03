@@ -30,6 +30,7 @@ func _ready() -> void:
 	is_open = false
 
 func _process(_delta: float) -> void:
+	# print("aaa")
 	if is_moving:
 		global_position = get_global_mouse_position() + mouse_offset
 		ThoughtWorldCls.instance.handle_is_moving()
@@ -100,3 +101,11 @@ func stop_arrow():
 	# if should_reset_anim:
 	# 	anim.play("info_exit")
 	# 	should_reset_anim = false
+
+func stop():
+	is_moving = false
+	mouse_offset = Vector2.ZERO
+	is_arrow = false
+	should_reset_anim = false
+	is_open = false
+	is_mouse_inside = false
