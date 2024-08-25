@@ -4,8 +4,8 @@ extends Resource
 @export var finished: bool = false
 @export var stopped: bool = false
 
-static var YES_CTX = true
-static var NO_CTX = false
+static var YES_CTX: bool = true
+static var NO_CTX: bool  = false
 
 signal on_finished()
 signal on_stopped()

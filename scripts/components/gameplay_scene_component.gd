@@ -4,7 +4,7 @@ extends Node
 # Effectively just a tag
 @export var root: Node = null
 
-func _enter_tree() -> void:
+func _ready() -> void:
     Game.active_gameplay_scene = self
 
 func pause():

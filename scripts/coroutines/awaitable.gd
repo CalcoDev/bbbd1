@@ -69,6 +69,9 @@ class CallableA extends Awaitable:
             2:
                 await to_await.call(p_coro, p_params)
 
+# asdasdasd
+# asdasda
+
 class CallableParamsA extends Awaitable:
     var params
     var pass_ctx: bool

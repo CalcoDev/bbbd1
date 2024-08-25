@@ -36,39 +36,20 @@ parallax = [NodePath("../../Sprite2D")]
 parallax_effect = Array[float]([0.0])
 canvas = NodePath("../..")
 
-[node name="MainThought" parent="ThoughtWorld" node_paths=PackedStringArray("anim", "area", "center", "halos", "label") instance=ExtResource("3_mb56q")]
-anim = NodePath("ScaledTimeAnimationPlayer")
-area = NodePath("SelectableComponent")
-center = NodePath("Center")
+[node name="MainThought" parent="ThoughtWorld" node_paths=PackedStringArray("halos") instance=ExtResource("3_mb56q")]
 halos = [NodePath("Halo")]
-label = NodePath("Control/Label")
 
-[node name="ThoughtNode" parent="ThoughtWorld" node_paths=PackedStringArray("anim", "area", "center", "halos", "label", "preview") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode" parent="ThoughtWorld" node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
 position = Vector2(81, 3)
-anim = NodePath("AnimationPlayer")
-area = NodePath("Area2D")
-center = NodePath("Center")
 halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
-label = NodePath("Label")
-preview = NodePath("Sprite2D")
 
-[node name="ThoughtNode2" parent="ThoughtWorld" node_paths=PackedStringArray("anim", "area", "center", "halos", "label", "preview") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode2" parent="ThoughtWorld" node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
 position = Vector2(-4, 72)
-anim = NodePath("AnimationPlayer")
-area = NodePath("Area2D")
-center = NodePath("Center")
 halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
-label = NodePath("Label")
-preview = NodePath("Sprite2D")
 
-[node name="ThoughtNode3" parent="ThoughtWorld" node_paths=PackedStringArray("anim", "area", "center", "halos", "label", "preview") instance=ExtResource("3_n3d3r")]
+[node name="ThoughtNode3" parent="ThoughtWorld" node_paths=PackedStringArray("halos") instance=ExtResource("3_n3d3r")]
 position = Vector2(-129, -2)
-anim = NodePath("AnimationPlayer")
-area = NodePath("Area2D")
-center = NodePath("Center")
 halos = [NodePath("Halo1"), NodePath("Halo2"), NodePath("Halo3")]
-label = NodePath("Label")
-preview = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.745098)
